@@ -33,7 +33,7 @@ import org.jdom2.output.XMLOutputter;
 public class GeneradorRecibosXML {
     private static String path = "src/resources/recibos.xml";
     public void generateRecibeXML(List<Contribuyente> listaContribuyentes, List<Ordenanza> listaOrdenanza, String userInput){
-        
+         PDFGenerator pdf = new PDFGenerator();
          try {
             ExcelManager excMang = new ExcelManager();
             Element contribuyentes = new Element("Recibos");
@@ -210,7 +210,7 @@ public class GeneradorRecibosXML {
                     contribuyente.addContent(totalReciboContribuyente);
 
                     
-                    
+                    pdf.createPDFContribuyente(contribuyente);
                     contribuyentes.addContent(contribuyente);
                 }
 
