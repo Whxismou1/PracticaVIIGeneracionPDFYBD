@@ -42,7 +42,7 @@ public class GeneradorRecibosXML {
 
             int numTrimestre = Integer.parseInt(userInput.substring(0, 1));
             int año = Integer.parseInt(userInput.substring(2).trim());
-            System.out.println(numTrimestre + "-" + año);
+            System.out.println(numTrimestre + "T-" + año);
 
             // Calcular la fecha de inicio y fin del trimestre
             LocalDate fechaInicioTrimestre = calcularInicioTrimestre(numTrimestre, año);
@@ -65,6 +65,7 @@ public class GeneradorRecibosXML {
                     Attribute attr = new Attribute("id", contr.getId().toString());
                     contribuyenteXML.setAttribute(attr.clone());
                     contribuyente.setAttribute(attr);
+                    
                     Element exencion = new Element("Exencion");
                     //    <idFilaExcel>2</idFilaExcel>
                     Element idFilaExcel = new Element("idFilaExcel");
@@ -107,6 +108,11 @@ public class GeneradorRecibosXML {
                     //    <totalRecibo>41.745</totalRecibo>
                     Element totalReciboContribuyente = new Element("totalRecibo");
 
+                    Element ordenanza = new Element("ordenanza");
+                    
+                    ordenanza.setText(listaOrdenanza.get(0).getPueblo());
+                    
+                    
                     exencion.setText(contr.getExencion());
                     idFilaExcel.setText(String.valueOf(contr.getId()));
                     nombre.setText(contr.getNombre());
@@ -151,7 +157,8 @@ public class GeneradorRecibosXML {
                     listaInfoConceptos.add(listaImporteIVA);
                     listaInfoConceptos.add(listaBonificacion);
                     listaInfoConceptos.add(listaImporteBonificacion);
-
+                    
+                    
                     if (contr.getConceptosACobrar() != null) {
                         int[] conceptosInt = Arrays.stream(contr.getConceptosACobrar().split(" "))
                                                     .mapToInt(Integer::parseInt)
@@ -162,7 +169,6 @@ public class GeneradorRecibosXML {
 
                         // Paso 3: Convertir el array de int de nuevo a un array de String
                         String[] conceptos = Arrays.stream(conceptosInt).mapToObj(String::valueOf).toArray(String[]::new);
-
                         for (int j = 0; j < conceptos.length; j++) {
                             float[] resultado = conceptos(conceptos[j], contr.getBonificacion(), cons, baseEachOne, IVAEachOne, listaOrdenanza, listaInfoConceptos);
                             baseEachOne = resultado[0];
@@ -234,12 +240,13 @@ public class GeneradorRecibosXML {
                     contribuyente.addContent(importeIVA);
                     contribuyente.addContent(bonificacionInfo);
                     contribuyente.addContent(importeBonificacion);
+                    contribuyente.addContent(ordenanza);
 
                     contribuyente.addContent(baseImponibleReciboContribuyente);
                     contribuyente.addContent(ivaReciboContribuyente);
                     contribuyente.addContent(totalReciboContribuyente);
 
-                    pdf.createPDFContribuyente(contribuyente);
+                    pdf.createPDFContribuyente(contribuyente, listaInfoConceptos, numTrimestre, año);
                     contribuyentes.addContent(contribuyenteXML);
                 }
 

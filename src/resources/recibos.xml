@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Recibos fechaRecibo="21/05/2024" fechaPadron="1t 2024" totalBaseImponible="33409.105" totalIVA="7313.9595" totalRecibos="40723.06">
+<Recibos fechaRecibo="22/05/2024" fechaPadron="1T 2024" totalBaseImponible="33409.105" totalIVA="7313.9595" totalRecibos="40723.06">
   <Recibo id="2">
     <Exencion>S</Exencion>
     <idFilaExcel>2</idFilaExcel>
