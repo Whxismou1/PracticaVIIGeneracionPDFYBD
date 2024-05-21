@@ -40,7 +40,7 @@ public class PDFGenerator {
 
         // Aquí tienes el HashMap con los elementos
         for (String clave : map.keySet()) {
-            System.out.println(clave + ": " + map.get(clave));
+            //System.out.println(clave + ": " + map.get(clave));
         }
 
         createPDF(map);

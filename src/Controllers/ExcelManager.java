@@ -31,7 +31,7 @@ public class ExcelManager {
                 if (!isEmptyContribuyente(actualContribuyente)) {
                     writeContribuyenteToRow(actualContribuyente, row);
                 }
-            System.out.println("Progreso: " + (actualRow - 1) + "/" + listaContribyente.size());
+            //System.out.println("Progreso: " + (actualRow - 1) + "/" + listaContribyente.size());
            }
             
             FileOutputStream outputStream = new FileOutputStream(filePath);
