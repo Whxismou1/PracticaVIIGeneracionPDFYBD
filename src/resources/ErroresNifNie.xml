@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Contribuyentes>
+  <Contribuyente id="14">
+    <NIF_NIE>19898Y</NIF_NIE>
+    <Nombre>Armando</Nombre>
+    <PrimerApellido>García</PrimerApellido>
+    <SegundoApellido>Prieto</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="20">
+    <NIF_NIE>09548150E</NIF_NIE>
+    <Nombre>Pilar</Nombre>
+    <PrimerApellido>González</PrimerApellido>
+    <SegundoApellido>Salas</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="39">
+    <NIF_NIE>01234567L</NIF_NIE>
+    <Nombre>Sara</Nombre>
+    <PrimerApellido>Flórez</PrimerApellido>
+    <SegundoApellido>Prieto</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="42">
+    <NIF_NIE>09785530L</NIF_NIE>
+    <Nombre>Herminia</Nombre>
+    <PrimerApellido>Almanzar</PrimerApellido>
+    <SegundoApellido>Robles</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="54">
+    <NIF_NIE>ss738010V</NIF_NIE>
+    <Nombre>Alencar</Nombre>
+    <PrimerApellido>Pasado</PrimerApellido>
+    <SegundoApellido>Guerra</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="67">
+    <NIF_NIE>09548827D</NIF_NIE>
+    <Nombre>Saaida</Nombre>
+    <PrimerApellido>Blanco</PrimerApellido>
+    <SegundoApellido>García</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="70">
+    <NIF_NIE>09548295Y</NIF_NIE>
+    <Nombre>Rocío</Nombre>
+    <PrimerApellido>Otero</PrimerApellido>
+    <SegundoApellido>Gomara</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="76">
+    <NIF_NIE>24304263W</NIF_NIE>
+    <Nombre>María</Nombre>
+    <PrimerApellido>Sutil</PrimerApellido>
+    <SegundoApellido>Herreras</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="77">
+    <NIF_NIE>X3387K</NIF_NIE>
+    <Nombre>Federico</Nombre>
+    <PrimerApellido>Díez</PrimerApellido>
+    <SegundoApellido>Laiz</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="90">
+    <NIF_NIE>Y1337652D</NIF_NIE>
+    <Nombre>Marta</Nombre>
+    <PrimerApellido>Herrero</PrimerApellido>
+    <SegundoApellido />
+  </Contribuyente>
+  <Contribuyente id="94">
+    <NIF_NIE />
+    <Nombre>Hugo</Nombre>
+    <PrimerApellido>Sánchez</PrimerApellido>
+    <SegundoApellido>Castro</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="105">
+    <NIF_NIE>0945</NIF_NIE>
+    <Nombre>Federico</Nombre>
+    <PrimerApellido>Gomez</PrimerApellido>
+    <SegundoApellido>Diez</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="127">
+    <NIF_NIE>X1673150S</NIF_NIE>
+    <Nombre>Ismael</Nombre>
+    <PrimerApellido>Vara</PrimerApellido>
+    <SegundoApellido>Cembranos</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="130">
+    <NIF_NIE>Y0806930N</NIF_NIE>
+    <Nombre>Nelida</Nombre>
+    <PrimerApellido>Blanco</PrimerApellido>
+    <SegundoApellido>Chamorro</SegundoApellido>
+  </Contribuyente>
+  <Contribuyente id="135">
+    <NIF_NIE />
+    <Nombre>Carmen</Nombre>
+    <PrimerApellido>García</PrimerApellido>
+    <SegundoApellido>Del amo</SegundoApellido>
+  </Contribuyente>
+</Contribuyentes>
