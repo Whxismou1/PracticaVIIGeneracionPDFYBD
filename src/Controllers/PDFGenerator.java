@@ -364,7 +364,7 @@ public class PDFGenerator {
         }
 
     }
-        void createPDFResumen(Attribute totalBaseImponible, Attribute totalIVA, Attribute totalRecibos, int numTrimestre, int año) {
+        void createPDFResumen(Attribute totalBaseImponible, Attribute totalIVA, Attribute totalRecibos, int numTrimestre, int año, DecimalFormat df) {
         String ruta = path + "resumen" + ".pdf";
         String trimestreFrase = "";
         switch(numTrimestre){
@@ -392,9 +392,9 @@ public class PDFGenerator {
             tabla1.setWidth(UnitValue.createPercentValue(100));
             Cell info = new Cell();
             info.add(new Paragraph("RESUMEN PADRON DE AGUA " + trimestreFrase));
-            info.add(new Paragraph("TOTAL BASE IMPONIBLE.................." + totalBaseImponible.getValue()));
-            info.add(new Paragraph("TOTAL IVA..........................................." + totalIVA.getValue()));
-            info.add(new Paragraph("TOTAL RECIBOS..............................." + totalRecibos.getValue()));
+            info.add(new Paragraph("TOTAL BASE IMPONIBLE.................." + df.format(Double.parseDouble(totalBaseImponible.getValue()))));
+            info.add(new Paragraph("TOTAL IVA..........................................." + df.format(Double.parseDouble(totalIVA.getValue()))));
+            info.add(new Paragraph("TOTAL RECIBOS..............................." + df.format(Double.parseDouble(totalRecibos.getValue()))));
             
             tabla1.addCell(info);
             doc.add(tabla1);
@@ -404,5 +404,6 @@ public class PDFGenerator {
         }
             
     }
+
 
 }

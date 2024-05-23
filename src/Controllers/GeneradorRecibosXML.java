@@ -8,6 +8,8 @@ package Controllers;
 import Entities.*;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -18,6 +20,7 @@ import java.util.logging.Logger;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
@@ -186,19 +189,15 @@ public class GeneradorRecibosXML {
                     importeIVA.setText(listaInfoConceptos.get(5).toString());
                     bonificacionInfo.setText(listaInfoConceptos.get(6).toString());
                     
+                    if (contr.getExencion().toUpperCase().equals("S")) {
+                        baseEachOne = 0;
+                        IVAEachOne = 0;
+                        totalEachOne = 0;
+                    }
+                    
                     baseImponible += baseEachOne;
                     iva += IVAEachOne;
                     recibos += totalEachOne;
-                    
-//                    if (!contr.getExencion().toUpperCase().equals("S")) {
-//                        baseImponible += baseEachOne;
-//                        iva += IVAEachOne;
-//                        recibos += totalEachOne;
-//                    } else {
-//                        baseEachOne = 0;
-//                        IVAEachOne = 0;
-//                        totalEachOne = 0;
-//                    }
 
                     baseImponibleReciboContribuyente.setText(String.valueOf(baseEachOne));
                     ivaReciboContribuyente.setText(String.valueOf(IVAEachOne));
@@ -266,7 +265,15 @@ public class GeneradorRecibosXML {
             XMLOutputter xml = new XMLOutputter();
             xml.setFormat(Format.getPrettyFormat());
             xml.output(doc, new FileWriter(path));
-            pdf.createPDFResumen(totalBaseImponible, totalIVA, totalRecibos,numTrimestre, año);
+            
+            DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.getDefault());
+            otherSymbols.setDecimalSeparator(',');
+            DecimalFormat df = new DecimalFormat("#", otherSymbols);;
+            df.setDecimalFormatSymbols(otherSymbols);
+            df.setMinimumIntegerDigits(2);
+            df.setMinimumFractionDigits(2);
+            df.setMaximumFractionDigits(2);
+            pdf.createPDFResumen(totalBaseImponible, totalIVA, totalRecibos,numTrimestre, año, df);
         } catch (IOException ex) {
             Logger.getLogger(GeneradorRecibosXML.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -403,6 +410,8 @@ public class GeneradorRecibosXML {
                     datos.add(bonificacion);
                     reciboInfo(listaInfoConceptos, datos);
                     datos.clear();
+                    float m3sum = 0;
+                    m3sum += Float.parseFloat(listaOrdenanza.get(i).getM3incluidos());
                     for (int j = 1; j < listaOrdenanza.size(); j++) {
                         if (listaOrdenanza.get(i + j + 1).getM3incluidos() == null) {
                             datos.add(listaOrdenanza.get(i + j).getConcepto());
@@ -416,7 +425,8 @@ public class GeneradorRecibosXML {
                             datos.clear();
                             break;
                         }
-                        if (listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j).getId()) && consTemp <= Float.parseFloat(listaOrdenanza.get(i + j + 1).getM3incluidos()) && consTemp >= Float.parseFloat(listaOrdenanza.get(i + j).getM3incluidos())) {
+                        m3sum += Float.parseFloat(listaOrdenanza.get(i + j).getM3incluidos());
+                        if (j == 1 && listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j).getId()) && consTemp <= m3sum  && consTemp >= m3sum - Float.parseFloat(listaOrdenanza.get(i).getM3incluidos())) {
                             datos.add(listaOrdenanza.get(i + j).getConcepto());
                             datos.add(listaOrdenanza.get(i + j).getSubconcepto());
                             datos.add(String.valueOf(consTemp));
@@ -428,7 +438,19 @@ public class GeneradorRecibosXML {
                             datos.clear();
                             base += Float.parseFloat(listaOrdenanza.get(i + j).getPreciom3()) * consTemp * (1 - (Float.parseFloat(bonificacion) / 100));
                             IVA += Float.parseFloat(listaOrdenanza.get(i + j).getPreciom3()) * consTemp * Float.parseFloat(listaOrdenanza.get(i + j).getIVA()) / 100 * (1 - (Float.parseFloat(bonificacion) / 100));
-                        } else if (!listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j + 1).getId()) && listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j).getId()) && consTemp <= Float.parseFloat(listaOrdenanza.get(i + j).getM3incluidos())) {
+                        } else if (listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j).getId()) && consTemp <= m3sum && consTemp >= m3sum - Float.parseFloat(listaOrdenanza.get(i + j).getM3incluidos())) {
+                            datos.add(listaOrdenanza.get(i + j).getConcepto());
+                            datos.add(listaOrdenanza.get(i + j).getSubconcepto());
+                            datos.add(String.valueOf(consTemp));
+                            datos.add(String.valueOf(Float.parseFloat(listaOrdenanza.get(i + j).getPreciom3()) * consTemp * (1 - (Float.parseFloat(bonificacion) / 100))));
+                            datos.add(listaOrdenanza.get(i + j).getIVA());
+                            datos.add(String.valueOf(Float.parseFloat(listaOrdenanza.get(i + j).getPreciom3()) * consTemp * Float.parseFloat(listaOrdenanza.get(i + j).getIVA()) / 100 * (1 - (Float.parseFloat(bonificacion) / 100))));
+                            datos.add(bonificacion);
+                            reciboInfo(listaInfoConceptos, datos);
+                            datos.clear();
+                            base += Float.parseFloat(listaOrdenanza.get(i + j).getPreciom3()) * consTemp * (1 - (Float.parseFloat(bonificacion) / 100));
+                            IVA += Float.parseFloat(listaOrdenanza.get(i + j).getPreciom3()) * consTemp * Float.parseFloat(listaOrdenanza.get(i + j).getIVA()) / 100 * (1 - (Float.parseFloat(bonificacion) / 100));
+                        } else if (!listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j + 1).getId()) && listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j).getId()) && consTemp <= m3sum  - Float.parseFloat(listaOrdenanza.get(i + j).getM3incluidos())) {
                             datos.add(listaOrdenanza.get(i + j).getConcepto());
                             datos.add(listaOrdenanza.get(i + j).getSubconcepto());
                             datos.add(String.valueOf(consTemp));
@@ -544,14 +566,20 @@ public class GeneradorRecibosXML {
                     }
                 } else if ("Agua".equals(listaOrdenanza.get(i).getConcepto()) && "Fijo".equals(listaOrdenanza.get(i).getSubconcepto()) && "S".equals(listaOrdenanza.get(i).getAcumulable())) {
                     base += Float.parseFloat(listaOrdenanza.get(i).getPrecioFijo()) * (1 - (Float.parseFloat(bonificacion) / 100));
+                    float m3sum = 0;
+                    m3sum += Float.parseFloat(listaOrdenanza.get(i).getM3incluidos());
                     for (int j = 1; j < listaOrdenanza.size() - i; j++) {
                         if (listaOrdenanza.get(i + j + 1).getM3incluidos() == null) {
                             break;
                         }
-                        if (listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j).getId()) && consTemp <= Float.parseFloat(listaOrdenanza.get(i + j + 1).getM3incluidos()) && consTemp >= Float.parseFloat(listaOrdenanza.get(i + j).getM3incluidos())) {
+                        m3sum += Float.parseFloat(listaOrdenanza.get(i + j).getM3incluidos());
+                        if (j == 1 && listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j).getId()) && consTemp <= m3sum  && consTemp >= m3sum - Float.parseFloat(listaOrdenanza.get(i).getM3incluidos())) {
+                            base += Float.parseFloat(listaOrdenanza.get(i + j).getPreciom3()) * consTemp * (1 - (Float.parseFloat(bonificacion) / 100));
+                            IVA += Float.parseFloat(listaOrdenanza.get(i + j).getPreciom3()) * consTemp * Float.parseFloat(listaOrdenanza.get(i + j).getIVA()) / 100 * (1 - (Float.parseFloat(bonificacion) / 100));
+                        } else if (listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j).getId()) && consTemp <= m3sum && consTemp >= m3sum - Float.parseFloat(listaOrdenanza.get(i + j).getM3incluidos())) {
                             base += Float.parseFloat(listaOrdenanza.get(i + j).getPreciom3()) * consTemp * (1 - (Float.parseFloat(bonificacion) / 100));
                             break;
-                        } else if (!listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j + 1).getId()) && listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j).getId()) && consTemp <= Float.parseFloat(listaOrdenanza.get(i + j).getM3incluidos())) {
+                        } else if (!listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j + 1).getId()) && listaOrdenanza.get(i).getId().equals(listaOrdenanza.get(i + j).getId()) && consTemp <= m3sum  - Float.parseFloat(listaOrdenanza.get(i + j).getM3incluidos())) {
                             base += Float.parseFloat(listaOrdenanza.get(i + j).getPreciom3()) * consTemp * (1 - (Float.parseFloat(bonificacion) / 100));
                             break;
                         }
