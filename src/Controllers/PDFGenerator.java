@@ -22,9 +22,14 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 import com.itextpdf.layout.properties.VerticalAlignment;
+import java.io.File;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import org.jdom2.Element;
 
 /**
@@ -76,6 +81,10 @@ public class PDFGenerator {
     }
 
     private void createPDF(HashMap<String, String> map, List<List<String>> listaInfoConceptos, String trimestreFrase) {
+        File directory = new File(path);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
         String ruta = path + map.get("NIF") + map.get("nombre") + map.get("primerApellido") + map.get("segundoApellido") + ".pdf";
         String rutaIMG = "src/resources/img.png";
 
@@ -90,6 +99,32 @@ public class PDFGenerator {
             List<String> listaPorcentajeIVA = listaInfoConceptos.get(4);
             List<String> listaImporteIVA = listaInfoConceptos.get(5);
             List<String> listaBonificacion = listaInfoConceptos.get(6);
+            
+            DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.getDefault());
+            otherSymbols.setDecimalSeparator(',');
+            DecimalFormat df = new DecimalFormat("#", otherSymbols);;
+            df.setDecimalFormatSymbols(otherSymbols);
+            df.setMinimumIntegerDigits(2);
+            df.setMinimumFractionDigits(2);
+            df.setMaximumFractionDigits(2);
+            DecimalFormat integers = new DecimalFormat("#", otherSymbols);
+            integers.setMaximumFractionDigits(0);
+            
+        
+            // Iterar sobre las listas de datos y redondear los números flotantes al formato de dos decimales
+            for (int i = 0; i < listaBaseImponible.size(); i++) {
+                float m3incluidos = Float.parseFloat(listaM3Incluidos.get(i));
+                float baseImponible = Float.parseFloat(listaBaseImponible.get(i));
+                float porcentajeIVA = Float.parseFloat(listaPorcentajeIVA.get(i));
+                float importeIVA = Float.parseFloat(listaImporteIVA.get(i));
+                float bonificacion = Float.parseFloat(listaBonificacion.get(i));
+
+                listaM3Incluidos.set(i, df.format(m3incluidos));
+                listaBaseImponible.set(i, df.format(baseImponible));
+                listaPorcentajeIVA.set(i, df.format(porcentajeIVA));
+                listaImporteIVA.set(i, df.format(importeIVA));
+                listaBonificacion.set(i, df.format(bonificacion));
+            }
             /**
              * *****************
              * CUADRO DATOS DEL AYUNTAMIENTO *****************
@@ -146,20 +181,20 @@ public class PDFGenerator {
             Cell cellLectActual = new Cell();
             cellLectActual.setTextAlignment(TextAlignment.CENTER);
             cellLectActual.setBorderRight(Border.NO_BORDER);
-            cellLectActual.add(new Paragraph("Lectura actual: " + map.get("lecturaActual")));
+            cellLectActual.add(new Paragraph("Lectura actual: " + integers.format(Float.parseFloat(map.get("lecturaActual")))));
             tabla2.addCell(cellLectActual);
 
             Cell cellLectAnterior = new Cell();
             cellLectAnterior.setBorderLeft(Border.NO_BORDER);
             cellLectAnterior.setBorderRight(Border.NO_BORDER);
             cellLectAnterior.setTextAlignment(TextAlignment.CENTER);
-            cellLectAnterior.add(new Paragraph("Lectura anterior: " + map.get("lecturaAnterior")));
+            cellLectAnterior.add(new Paragraph("Lectura anterior: " + integers.format(Float.parseFloat(map.get("lecturaAnterior")))));
             tabla2.addCell(cellLectAnterior);
 
             Cell cellConsumo = new Cell();
             cellConsumo.setBorderLeft(Border.NO_BORDER);
             cellConsumo.setTextAlignment(TextAlignment.CENTER);
-            cellConsumo.add(new Paragraph("Consumo: " + map.get("consumo") + " metros cúbicos"));
+            cellConsumo.add(new Paragraph("Consumo: " + integers.format(Float.parseFloat(map.get("consumo"))) + " metros cúbicos"));
             tabla2.addCell(cellConsumo);
 
             Table tabla3ParafoRecibo = new Table(1);
@@ -237,7 +272,7 @@ public class PDFGenerator {
                 subConceptoElem.add(new Paragraph(listaSubconceptos.get(i)));
                 m3IncluidosElem.add(new Paragraph(listaM3Incluidos.get(i)));
                 baseImponibleElem.add(new Paragraph(listaBaseImponible.get(i)));
-                IVAElem.add(new Paragraph(listaPorcentajeIVA.get(i)));
+                IVAElem.add(new Paragraph(listaPorcentajeIVA.get(i) + "%"));
                 importeElem.add(new Paragraph(listaImporteIVA.get(i)));
                 descuentoElem.add(new Paragraph(listaBonificacion.get(i)));
             }
@@ -265,12 +300,13 @@ public class PDFGenerator {
             Cell totalText = new Cell().add(new Paragraph("TOTALES"));
             totalText.setBorder(Border.NO_BORDER);
             totalText.setBorderTop(new SolidBorder(2));
-
-            Cell totalBaseImp = new Cell().add(new Paragraph(map.get("baseImponibleRecibo")));
+            
+            
+            Cell totalBaseImp = new Cell().add(new Paragraph(df.format(Float.parseFloat(map.get("baseImponibleRecibo")))));
             totalBaseImp.setBorder(Border.NO_BORDER);
             totalBaseImp.setBorderTop(new SolidBorder(2));
 
-            Cell totalIVA = new Cell().add(new Paragraph(map.get("ivaRecibo")));
+            Cell totalIVA = new Cell().add(new Paragraph(df.format(Float.parseFloat(map.get("ivaRecibo")))));
             totalIVA.setTextAlignment(TextAlignment.RIGHT);
             totalIVA.setBorder(Border.NO_BORDER);
             totalIVA.setBorderTop(new SolidBorder(2));
@@ -287,9 +323,9 @@ public class PDFGenerator {
             totalBases.add(new Paragraph("TOTAL IVA................................................."));
             totalBases.setBorder(Border.NO_BORDER);
 
-            Cell totalValores = new Cell().add(new Paragraph(map.get("baseImponibleRecibo")));
+            Cell totalValores = new Cell().add(new Paragraph(df.format(Float.parseFloat(map.get("baseImponibleRecibo")))));
             totalValores.setBorder(Border.NO_BORDER);
-            totalValores.add(new Paragraph(map.get("ivaRecibo")));
+            totalValores.add(new Paragraph(df.format(Float.parseFloat(map.get("ivaRecibo")))));
             totalValores.setTextAlignment(TextAlignment.RIGHT);
             tabla6TotalesValor.addCell(totalBases);
             tabla6TotalesValor.addCell(totalValores);
@@ -304,7 +340,7 @@ public class PDFGenerator {
             totReciboFinal.setBorderRight(Border.NO_BORDER);
             totReciboFinal.setBorderTop(new SolidBorder(2));
 
-            Cell totalImporteFinal = new Cell().add(new Paragraph(map.get("totalRecibo")));
+            Cell totalImporteFinal = new Cell().add(new Paragraph(df.format(Float.parseFloat(map.get("totalRecibo")))));
             totalImporteFinal.setTextAlignment(TextAlignment.RIGHT);
             totalImporteFinal.setBorderBottom(Border.NO_BORDER);
             totalImporteFinal.setBorderLeft(Border.NO_BORDER);
