@@ -1,4 +1,3 @@
-
 package Controllers;
 
 import Entities.Contribuyente;
@@ -45,7 +44,10 @@ public class NIFController {
     }
 
     private boolean isValidStructureNIEExtranjero(String nif) {
-             
+
+        if (nif.toUpperCase().charAt(0) != 'X' && nif.toUpperCase().charAt(0) != 'Y' && nif.toUpperCase().charAt(0) != 'Z') {
+            return false;
+        }
         if (!Character.isLetter(nif.charAt(nif.length() - 1)) || !Character.isLetter(nif.charAt(0))) {
             return false;
         }
@@ -92,14 +94,14 @@ public class NIFController {
                 isSaneado = false;
             } else {
                 String beginIndex = "";
-                if(firstLetterNum == 0){
+                if (firstLetterNum == 0) {
                     beginIndex = "X";
-                }else if(firstLetterNum == 1){
+                } else if (firstLetterNum == 1) {
                     beginIndex = "Y";
-                }else if(firstLetterNum == 2){
+                } else if (firstLetterNum == 2) {
                     beginIndex = "Z";
                 }
-    
+
                 String newNie = beginIndex + digits.substring(1, digits.length()) + letraControlReal;
                 actualContri.setNIFNIE(newNie);
                 isSaneado = true;

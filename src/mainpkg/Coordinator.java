@@ -36,6 +36,7 @@ public class Coordinator {
             }
 
             String nifActual = contribuyenteActual.getNIFNIE();
+
             if (nifActual == null) {
                 malNie.add(contribuyenteActual);
             } else {
@@ -43,6 +44,7 @@ public class Coordinator {
                     malNie.add(contribuyenteActual);
                 } else {
                     boolean isSpanish = nifControler.isSpanish(nifActual);
+
                     if (nifControler.isNifValid(nifActual, isSpanish, contribuyenteActual)) {
                         if (nifControler.getIsSaneado()) {
                             malNie.add(contribuyenteActual);
@@ -75,7 +77,9 @@ public class Coordinator {
         String trimestre = sc.nextLine();
         new GeneradorRecibosXML().generateRecibeXML(listaContribuyenteFiltrado, listaOrdenanza, trimestre);
         excMang.writeExcel(listaContribuyente);
-    }
+        }
+
+    
 
     private boolean isEmptyContribuyente(Contribuyente actual) {
 

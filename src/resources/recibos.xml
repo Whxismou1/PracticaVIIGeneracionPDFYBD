@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Recibos fechaRecibo="23/05/2024" fechaPadron="1t 2024" totalBaseImponible="21065.352" totalIVA="3837.1377" totalRecibos="24902.496">
-  <Recibo id="2">
-    <Exencion>S</Exencion>
-    <idFilaExcel>2</idFilaExcel>
-    <nombre>Juan</nombre>
-    <primerApellido>Martinez</primerApellido>
-    <segundoApellido>Dominguez</segundoApellido>
-    <NIF>09632539R</NIF>
-    <IBAN>DK7331645124473461205164</IBAN>
-    <lecturaActual>106.0</lecturaActual>
-    <lecturaAnterior>21.0</lecturaAnterior>
-    <consumo>85.0</consumo>
-    <baseImponibleRecibo>0.0</baseImponibleRecibo>
-    <ivaRecibo>0.0</ivaRecibo>
-    <totalRecibo>0.0</totalRecibo>
-  </Recibo>
+<Recibos fechaRecibo="23/05/2024" fechaPadron="1T 2023" totalBaseImponible="18056.95" totalIVA="3293.0178" totalRecibos="21349.973">
   <Recibo id="3">
     <Exencion>N</Exencion>
     <idFilaExcel>3</idFilaExcel>
@@ -195,21 +180,6 @@
     <ivaRecibo>157.5</ivaRecibo>
     <totalRecibo>1007.5</totalRecibo>
   </Recibo>
-  <Recibo id="17">
-    <Exencion>N</Exencion>
-    <idFilaExcel>17</idFilaExcel>
-    <nombre>Saaida</nombre>
-    <primerApellido>Boughaza</primerApellido>
-    <segundoApellido>Robles</segundoApellido>
-    <NIF>09570211A</NIF>
-    <IBAN>ES9596431245118150005156</IBAN>
-    <lecturaActual>741.0</lecturaActual>
-    <lecturaAnterior>658.0</lecturaAnterior>
-    <consumo>83.0</consumo>
-    <baseImponibleRecibo>262.6</baseImponibleRecibo>
-    <ivaRecibo>45.36</ivaRecibo>
-    <totalRecibo>307.96002</totalRecibo>
-  </Recibo>
   <Recibo id="18">
     <Exencion>N</Exencion>
     <idFilaExcel>18</idFilaExcel>
@@ -269,21 +239,6 @@
     <baseImponibleRecibo>182.1</baseImponibleRecibo>
     <ivaRecibo>31.185</ivaRecibo>
     <totalRecibo>213.285</totalRecibo>
-  </Recibo>
-  <Recibo id="23">
-    <Exencion>N</Exencion>
-    <idFilaExcel>23</idFilaExcel>
-    <nombre>Blas</nombre>
-    <primerApellido>Vega</primerApellido>
-    <segundoApellido />
-    <NIF>09611087P</NIF>
-    <IBAN>GR4920910936583000000000</IBAN>
-    <lecturaActual>809.0</lecturaActual>
-    <lecturaAnterior>609.0</lecturaAnterior>
-    <consumo>200.0</consumo>
-    <baseImponibleRecibo>1180.0</baseImponibleRecibo>
-    <ivaRecibo>220.5</ivaRecibo>
-    <totalRecibo>1400.5</totalRecibo>
   </Recibo>
   <Recibo id="24">
     <Exencion>N</Exencion>
@@ -465,21 +420,6 @@
     <ivaRecibo>76.44</ivaRecibo>
     <totalRecibo>476.44</totalRecibo>
   </Recibo>
-  <Recibo id="41">
-    <Exencion>N</Exencion>
-    <idFilaExcel>41</idFilaExcel>
-    <nombre>Dolores</nombre>
-    <primerApellido>López</primerApellido>
-    <segundoApellido>Robles</segundoApellido>
-    <NIF>09548392B</NIF>
-    <IBAN>ES6885461325251978750005</IBAN>
-    <lecturaActual>725.0</lecturaActual>
-    <lecturaAnterior>646.0</lecturaAnterior>
-    <consumo>79.0</consumo>
-    <baseImponibleRecibo>214.0</baseImponibleRecibo>
-    <ivaRecibo>37.38</ivaRecibo>
-    <totalRecibo>251.38</totalRecibo>
-  </Recibo>
   <Recibo id="43">
     <Exencion>N</Exencion>
     <idFilaExcel>43</idFilaExcel>
@@ -539,21 +479,6 @@
     <baseImponibleRecibo>186.0</baseImponibleRecibo>
     <ivaRecibo>31.5</ivaRecibo>
     <totalRecibo>217.5</totalRecibo>
-  </Recibo>
-  <Recibo id="47">
-    <Exencion>N</Exencion>
-    <idFilaExcel>47</idFilaExcel>
-    <nombre>Demetrio</nombre>
-    <primerApellido>Fernández</primerApellido>
-    <segundoApellido>García</segundoApellido>
-    <NIF>09611100K</NIF>
-    <IBAN>ES5566552211148855332200</IBAN>
-    <lecturaActual>1084.0</lecturaActual>
-    <lecturaAnterior>990.0</lecturaAnterior>
-    <consumo>94.0</consumo>
-    <baseImponibleRecibo>244.0</baseImponibleRecibo>
-    <ivaRecibo>43.68</ivaRecibo>
-    <totalRecibo>287.68</totalRecibo>
   </Recibo>
   <Recibo id="48">
     <Exencion>N</Exencion>
@@ -885,21 +810,6 @@
     <ivaRecibo>122.850006</ivaRecibo>
     <totalRecibo>785.1</totalRecibo>
   </Recibo>
-  <Recibo id="81">
-    <Exencion>N</Exencion>
-    <idFilaExcel>81</idFilaExcel>
-    <nombre>Gonzalo</nombre>
-    <primerApellido>Pérez</primerApellido>
-    <segundoApellido>Martinez</segundoApellido>
-    <NIF>09548247G</NIF>
-    <IBAN>FI6132658012367712548745</IBAN>
-    <lecturaActual>772.0</lecturaActual>
-    <lecturaAnterior>633.0</lecturaAnterior>
-    <consumo>139.0</consumo>
-    <baseImponibleRecibo>844.5</baseImponibleRecibo>
-    <ivaRecibo>156.45</ivaRecibo>
-    <totalRecibo>1000.95</totalRecibo>
-  </Recibo>
   <Recibo id="82">
     <Exencion>N</Exencion>
     <idFilaExcel>82</idFilaExcel>
@@ -914,21 +824,6 @@
     <baseImponibleRecibo>80.0</baseImponibleRecibo>
     <ivaRecibo>10.5</ivaRecibo>
     <totalRecibo>90.5</totalRecibo>
-  </Recibo>
-  <Recibo id="83">
-    <Exencion>N</Exencion>
-    <idFilaExcel>83</idFilaExcel>
-    <nombre>Melisa</nombre>
-    <primerApellido>Marín</primerApellido>
-    <segundoApellido>Melcón</segundoApellido>
-    <NIF>w9314602Q</NIF>
-    <IBAN>FR3820012541150023365233</IBAN>
-    <lecturaActual>864.0</lecturaActual>
-    <lecturaAnterior>801.0</lecturaAnterior>
-    <consumo>63.0</consumo>
-    <baseImponibleRecibo>218.6</baseImponibleRecibo>
-    <ivaRecibo>36.96</ivaRecibo>
-    <totalRecibo>255.56</totalRecibo>
   </Recibo>
   <Recibo id="84">
     <Exencion>N</Exencion>
@@ -1034,21 +929,6 @@
     <baseImponibleRecibo>205.2</baseImponibleRecibo>
     <ivaRecibo>35.595</ivaRecibo>
     <totalRecibo>240.795</totalRecibo>
-  </Recibo>
-  <Recibo id="95">
-    <Exencion>N</Exencion>
-    <idFilaExcel>95</idFilaExcel>
-    <nombre>Khadouj</nombre>
-    <primerApellido>Sánchez</primerApellido>
-    <segundoApellido>Castro</segundoApellido>
-    <NIF>12160221Y</NIF>
-    <IBAN>ES1665165654918886005001</IBAN>
-    <lecturaActual>666.0</lecturaActual>
-    <lecturaAnterior>635.0</lecturaAnterior>
-    <consumo>31.0</consumo>
-    <baseImponibleRecibo>80.0</baseImponibleRecibo>
-    <ivaRecibo>10.5</ivaRecibo>
-    <totalRecibo>90.5</totalRecibo>
   </Recibo>
   <Recibo id="102">
     <Exencion>N</Exencion>
@@ -1166,9 +1046,9 @@
     <lecturaActual>1020.0</lecturaActual>
     <lecturaAnterior>944.0</lecturaAnterior>
     <consumo>76.0</consumo>
-    <baseImponibleRecibo>0.0</baseImponibleRecibo>
-    <ivaRecibo>0.0</ivaRecibo>
-    <totalRecibo>0.0</totalRecibo>
+    <baseImponibleRecibo>35.298</baseImponibleRecibo>
+    <ivaRecibo>6.7098</ivaRecibo>
+    <totalRecibo>42.0078</totalRecibo>
   </Recibo>
   <Recibo id="133">
     <Exencion>N</Exencion>

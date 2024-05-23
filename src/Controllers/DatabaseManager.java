@@ -190,25 +190,25 @@ public class DatabaseManager {
 
     }
     
-    public void insertOrUpdateSession(List<contribuyente> contribuyenteList) throws DatabaseException {
-        this.openSession();
-        this.transaction = this.session.beginTransaction();
-        this.querier = new DatabaseQuerier(this.session);
-        for (contribuyente c in contribuyenteList) {
-            Contribuyente dbItem = this.querier.getFormDDBB(c);
-            if (dbItem == null) {
-                //si no existe se crea
-                c.setIdContribuyente((Integer) this.session.save(c));
-            } else {
-                //si existe lo actualizo
-                c.setIdContribuyente(dbItem.getIdContribuyente());
-                dbItem.update(contribuyente);
-                this.session.update(dbItem);
-            }
-        }
-        this.insertOrUpdate(contribuyenteList);
-        this.transaction.commit();
-        this.closeSession();
+    public void insertOrUpdateSession(List<Contribuyente> contribuyenteList) {
+//        this.openSession();
+//        this.transaction = this.session.beginTransaction();
+//        this.querier = new DatabaseQuerier(this.session);
+//        for (contribuyente c in contribuyenteList) {
+//            Contribuyente dbItem = this.querier.getFormDDBB(c);
+//            if (dbItem == null) {
+//                //si no existe se crea
+//                c.setIdContribuyente((Integer) this.session.save(c));
+//            } else {
+//                //si existe lo actualizo
+//                c.setIdContribuyente(dbItem.getIdContribuyente());
+//                dbItem.update(contribuyente);
+//                this.session.update(dbItem);
+//            }
+//        }
+//        this.insertOrUpdate(contribuyenteList);
+//        this.transaction.commit();
+//        this.closeSession();
+//    }
     }
-
 }

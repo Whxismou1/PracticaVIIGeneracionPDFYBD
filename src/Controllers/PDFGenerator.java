@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import org.jdom2.Attribute;
 import org.jdom2.Element;
 
 /**
@@ -363,6 +364,46 @@ public class PDFGenerator {
             e.printStackTrace();
         }
 
+    }
+        void createPDFResumen(Attribute totalBaseImponible, Attribute totalIVA, Attribute totalRecibos, int numTrimestre, int año) {
+        String ruta = path + "resumen" + ".pdf";
+        String trimestreFrase = "";
+        switch(numTrimestre){
+            case 1:
+                trimestreFrase = "Primer trimestre de " + año;
+                break;
+            case 2:
+                trimestreFrase = "Segundo trimestre de " + año;
+                break;
+            case 3:
+                trimestreFrase = "Tercer trimestre de " + año;
+                break;
+            case 4:
+                trimestreFrase = "Cuarto trimestre de " + año;
+                break;
+            default:
+                break;
+        }
+        try {
+            PdfWriter writer = new PdfWriter(ruta);
+            PdfDocument pdfDoc = new PdfDocument(writer);
+            Document doc = new Document(pdfDoc, PageSize.LETTER);
+            
+            Table tabla1 = new Table(1);
+            tabla1.setWidth(UnitValue.createPercentValue(100));
+            Cell info = new Cell();
+            info.add(new Paragraph("RESUMEN PADRON DE AGUA " + trimestreFrase));
+            info.add(new Paragraph("TOTAL BASE IMPONIBLE.................." + totalBaseImponible.getValue()));
+            info.add(new Paragraph("TOTAL IVA..........................................." + totalIVA.getValue()));
+            info.add(new Paragraph("TOTAL RECIBOS..............................." + totalRecibos.getValue()));
+            
+            tabla1.addCell(info);
+            doc.add(tabla1);
+            doc.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            
     }
 
 }

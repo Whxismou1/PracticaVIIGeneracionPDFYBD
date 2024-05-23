@@ -185,16 +185,20 @@ public class GeneradorRecibosXML {
                     porcentajeIVA.setText(listaInfoConceptos.get(4).toString());
                     importeIVA.setText(listaInfoConceptos.get(5).toString());
                     bonificacionInfo.setText(listaInfoConceptos.get(6).toString());
-
-                    if (!contr.getExencion().toUpperCase().equals("S")) {
-                        baseImponible += baseEachOne;
-                        iva += IVAEachOne;
-                        recibos += totalEachOne;
-                    } else {
-                        baseEachOne = 0;
-                        IVAEachOne = 0;
-                        totalEachOne = 0;
-                    }
+                    
+                    baseImponible += baseEachOne;
+                    iva += IVAEachOne;
+                    recibos += totalEachOne;
+                    
+//                    if (!contr.getExencion().toUpperCase().equals("S")) {
+//                        baseImponible += baseEachOne;
+//                        iva += IVAEachOne;
+//                        recibos += totalEachOne;
+//                    } else {
+//                        baseEachOne = 0;
+//                        IVAEachOne = 0;
+//                        totalEachOne = 0;
+//                    }
 
                     baseImponibleReciboContribuyente.setText(String.valueOf(baseEachOne));
                     ivaReciboContribuyente.setText(String.valueOf(IVAEachOne));
@@ -262,6 +266,7 @@ public class GeneradorRecibosXML {
             XMLOutputter xml = new XMLOutputter();
             xml.setFormat(Format.getPrettyFormat());
             xml.output(doc, new FileWriter(path));
+            pdf.createPDFResumen(totalBaseImponible, totalIVA, totalRecibos,numTrimestre, año);
         } catch (IOException ex) {
             Logger.getLogger(GeneradorRecibosXML.class.getName()).log(Level.SEVERE, null, ex);
         }
