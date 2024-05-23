@@ -1,6 +1,7 @@
 package mainpkg;
 
 import Controllers.CCCController;
+import Controllers.DatabaseManager;
 import Controllers.ErrorManager;
 import Controllers.ExcelManager;
 import Controllers.GeneradorRecibosXML;
@@ -15,6 +16,7 @@ import java.util.Scanner;
 public class Coordinator {
 
     public void init() {
+        DatabaseManager dbm = new DatabaseManager();
         ExcelManager excMang = new ExcelManager();
         CCCController cccController = new CCCController();
         IBANController ibanCont = new IBANController();
@@ -71,15 +73,15 @@ public class Coordinator {
         errorManager.errorManagerNIF(malNie);
         errorManager.errorManagerCCC(malCCC);
 
-        
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce trimestre a calcular Ejemplo: 1T 2024");
         String trimestre = sc.nextLine();
+
         new GeneradorRecibosXML().generateRecibeXML(listaContribuyenteFiltrado, listaOrdenanza, trimestre);
         excMang.writeExcel(listaContribuyente);
-        }
-
-    
+        dbm.init(listaContribuyenteFiltrado, listaOrdenanza, trimestre);
+        System.exit(0);
+    }
 
     private boolean isEmptyContribuyente(Contribuyente actual) {
 

@@ -132,7 +132,6 @@ public class PDFGenerator {
              */
             Table tabla1 = new Table(2);
             tabla1.setWidth(UnitValue.createPercentValue(100));
-            Ordenanza ord = new Ordenanza();
             // Primera celda de la primera tabla
             Cell cell1 = new Cell();
             cell1.setBorder(new SolidBorder(1));

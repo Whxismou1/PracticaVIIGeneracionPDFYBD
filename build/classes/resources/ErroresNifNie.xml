@@ -36,12 +36,6 @@
     <PrimerApellido>Blanco</PrimerApellido>
     <SegundoApellido>García</SegundoApellido>
   </Contribuyente>
-  <Contribuyente id="68">
-    <NIF_NIE>X8996448K</NIF_NIE>
-    <Nombre>Antonio</Nombre>
-    <PrimerApellido>Fernandez</PrimerApellido>
-    <SegundoApellido>García</SegundoApellido>
-  </Contribuyente>
   <Contribuyente id="70">
     <NIF_NIE>09548295Y</NIF_NIE>
     <Nombre>Rocío</Nombre>
@@ -66,35 +60,17 @@
     <PrimerApellido>Marín</PrimerApellido>
     <SegundoApellido>Melcón</SegundoApellido>
   </Contribuyente>
-  <Contribuyente id="89">
-    <NIF_NIE>Y1337652D</NIF_NIE>
-    <Nombre>Marisa</Nombre>
-    <PrimerApellido>Labarga</PrimerApellido>
-    <SegundoApellido>Candanedo</SegundoApellido>
-  </Contribuyente>
   <Contribuyente id="90">
     <NIF_NIE>Y1337652D</NIF_NIE>
     <Nombre>Marta</Nombre>
     <PrimerApellido>Herrero</PrimerApellido>
     <SegundoApellido />
   </Contribuyente>
-  <Contribuyente id="93">
-    <NIF_NIE>X1673150S</NIF_NIE>
-    <Nombre>Carmen</Nombre>
-    <PrimerApellido>Gomez</PrimerApellido>
-    <SegundoApellido>Castañeda</SegundoApellido>
-  </Contribuyente>
   <Contribuyente id="94">
     <NIF_NIE />
     <Nombre>Hugo</Nombre>
     <PrimerApellido>Sánchez</PrimerApellido>
     <SegundoApellido>Castro</SegundoApellido>
-  </Contribuyente>
-  <Contribuyente id="102">
-    <NIF_NIE>X5106131Q</NIF_NIE>
-    <Nombre>Mario</Nombre>
-    <PrimerApellido>Herrero</PrimerApellido>
-    <SegundoApellido>Coello</SegundoApellido>
   </Contribuyente>
   <Contribuyente id="105">
     <NIF_NIE>0945</NIF_NIE>
@@ -107,12 +83,6 @@
     <Nombre>Ismael</Nombre>
     <PrimerApellido>Vara</PrimerApellido>
     <SegundoApellido>Cembranos</SegundoApellido>
-  </Contribuyente>
-  <Contribuyente id="129">
-    <NIF_NIE>Y0806930N</NIF_NIE>
-    <Nombre>Elisa</Nombre>
-    <PrimerApellido>Bernal</PrimerApellido>
-    <SegundoApellido>Cerro</SegundoApellido>
   </Contribuyente>
   <Contribuyente id="130">
     <NIF_NIE>Y0806930N</NIF_NIE>
