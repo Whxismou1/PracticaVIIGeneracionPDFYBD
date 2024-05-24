@@ -1,5 +1,5 @@
 package POJOS;
-// Generated 23 may. 2024 22:57:30 by Hibernate Tools 4.3.1
+// Generated 24 may. 2024 23:15:23 by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package POJOS;
 public class Lineasrecibo  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private Recibos recibos;
      private String concepto;
      private String subconcepto;
@@ -23,12 +23,7 @@ public class Lineasrecibo  implements java.io.Serializable {
     public Lineasrecibo() {
     }
 
-	
-    public Lineasrecibo(int id) {
-        this.id = id;
-    }
-    public Lineasrecibo(int id, Recibos recibos, String concepto, String subconcepto, Double baseImponible, Double porcentajeIva, Double importeiva, Double m3incluidos, Double bonificacion, Double importeBonificacion) {
-       this.id = id;
+    public Lineasrecibo(Recibos recibos, String concepto, String subconcepto, Double baseImponible, Double porcentajeIva, Double importeiva, Double m3incluidos, Double bonificacion, Double importeBonificacion) {
        this.recibos = recibos;
        this.concepto = concepto;
        this.subconcepto = subconcepto;
@@ -40,11 +35,11 @@ public class Lineasrecibo  implements java.io.Serializable {
        this.importeBonificacion = importeBonificacion;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Recibos getRecibos() {

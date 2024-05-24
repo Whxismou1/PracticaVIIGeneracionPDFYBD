@@ -1,5 +1,5 @@
 package POJOS;
-// Generated 23 may. 2024 22:57:30 by Hibernate Tools 4.3.1
+// Generated 24 may. 2024 23:15:23 by Hibernate Tools 4.3.1
 
 
 
@@ -9,28 +9,23 @@ package POJOS;
 public class RelContribuyenteOrdenanza  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private Contribuyente contribuyente;
      private Ordenanza ordenanza;
 
     public RelContribuyenteOrdenanza() {
     }
 
-	
-    public RelContribuyenteOrdenanza(int id) {
-        this.id = id;
-    }
-    public RelContribuyenteOrdenanza(int id, Contribuyente contribuyente, Ordenanza ordenanza) {
-       this.id = id;
+    public RelContribuyenteOrdenanza(Contribuyente contribuyente, Ordenanza ordenanza) {
        this.contribuyente = contribuyente;
        this.ordenanza = ordenanza;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Contribuyente getContribuyente() {

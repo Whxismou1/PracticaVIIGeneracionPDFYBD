@@ -34,6 +34,8 @@ import org.jdom2.output.XMLOutputter;
  */
 public class GeneradorRecibosXML {
 
+
+    private List<Element> listaContrValor = new ArrayList<>();
     private static String path = "src/resources/recibos.xml";
 
     public void generateRecibeXML(List<Contribuyente> listaContribuyentes, List<Ordenanza> listaOrdenanza, String userInput) {
@@ -243,7 +245,7 @@ public class GeneradorRecibosXML {
                     contribuyente.addContent(baseImponibleReciboContribuyente);
                     contribuyente.addContent(ivaReciboContribuyente);
                     contribuyente.addContent(totalReciboContribuyente);
-
+                    listaContrValor.add(contribuyente);
                     pdf.createPDFContribuyente(contribuyente, listaInfoConceptos, numTrimestre, año);
                     contribuyentes.addContent(contribuyenteXML);
                 }
@@ -273,6 +275,7 @@ public class GeneradorRecibosXML {
             df.setMinimumIntegerDigits(2);
             df.setMinimumFractionDigits(2);
             df.setMaximumFractionDigits(2);
+            
             pdf.createPDFResumen(totalBaseImponible, totalIVA, totalRecibos,numTrimestre, año, df);
         } catch (IOException ex) {
             Logger.getLogger(GeneradorRecibosXML.class.getName()).log(Level.SEVERE, null, ex);
@@ -632,4 +635,13 @@ public class GeneradorRecibosXML {
         return "";
     }
 
+    
+    public List<Element> getListaContrValor() {
+        return listaContrValor;
+    }
+
+    public void clearListaContrValor() {
+        this.listaContrValor.clear();
+    }
+    
 }

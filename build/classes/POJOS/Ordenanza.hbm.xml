@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23 may. 2024 22:57:30 by Hibernate Tools 4.3.1 -->
+<!-- Generated 24 may. 2024 23:15:23 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="POJOS.Ordenanza" table="ordenanza" catalog="sistemas2">
-        <id name="id" type="int">
+    <class name="POJOS.Ordenanza" table="ordenanza" catalog="sistemas2" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="assigned"></generator>
+            <generator class="identity" />
         </id>
         <property name="idOrdenanza" type="java.lang.Integer">
             <column name="idOrdenanza" />
@@ -29,8 +29,8 @@
         <property name="m3incluidos" type="java.lang.Integer">
             <column name="m3incluidos" />
         </property>
-        <property name="preciom3" type="java.lang.Integer">
-            <column name="preciom3" />
+        <property name="preciom3" type="java.lang.Double">
+            <column name="preciom3" precision="22" scale="0" />
         </property>
         <property name="porcentaje" type="java.lang.Double">
             <column name="porcentaje" precision="22" scale="0" />

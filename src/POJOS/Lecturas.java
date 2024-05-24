@@ -1,5 +1,5 @@
 package POJOS;
-// Generated 23 may. 2024 22:57:30 by Hibernate Tools 4.3.1
+// Generated 24 may. 2024 23:15:23 by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package POJOS;
 public class Lecturas  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private Contribuyente contribuyente;
      private String ejercicio;
      private String periodo;
@@ -19,12 +19,7 @@ public class Lecturas  implements java.io.Serializable {
     public Lecturas() {
     }
 
-	
-    public Lecturas(int id) {
-        this.id = id;
-    }
-    public Lecturas(int id, Contribuyente contribuyente, String ejercicio, String periodo, Integer lecturaAnterior, Integer lecturaActual) {
-       this.id = id;
+    public Lecturas(Contribuyente contribuyente, String ejercicio, String periodo, Integer lecturaAnterior, Integer lecturaActual) {
        this.contribuyente = contribuyente;
        this.ejercicio = ejercicio;
        this.periodo = periodo;
@@ -32,11 +27,11 @@ public class Lecturas  implements java.io.Serializable {
        this.lecturaActual = lecturaActual;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Contribuyente getContribuyente() {

@@ -207,8 +207,14 @@ public class PDFGenerator {
             contentRecibo.setBorder(Border.NO_BORDER);
             tabla3ParafoRecibo.addCell(contentRecibo);
             tabla3ParafoRecibo.setTextAlignment(TextAlignment.CENTER);
-
-            Table tabla4Recibos = new Table(7);
+            Table tabla4Recibos = null;
+            
+            if(listaBonificacion.get(0).equals("00,00")){
+                tabla4Recibos = new Table(6);
+            }else{
+                tabla4Recibos = new Table(7);
+            }
+            
             tabla4Recibos.setWidth(UnitValue.createPercentValue(100));
             tabla4Recibos.setTextAlignment(TextAlignment.CENTER);
             Cell concepto = new Cell().add(new Paragraph("Concepto"));
@@ -240,11 +246,14 @@ public class PDFGenerator {
             importe.setBorder(Border.NO_BORDER);
             importe.setBorderTop(new SolidBorder(2));
             importe.setBorderBottom(new SolidBorder(2));
-
-            Cell descuento = new Cell().add(new Paragraph("Descuento"));
-            descuento.setBorder(Border.NO_BORDER);
-            descuento.setBorderTop(new SolidBorder(2));
-            descuento.setBorderBottom(new SolidBorder(2));
+            Cell descuento = null;
+            
+            if(!listaBonificacion.get(0).equals("00,00")){
+                descuento = new Cell().add(new Paragraph("Descuento"));
+                descuento.setBorder(Border.NO_BORDER);
+                descuento.setBorderTop(new SolidBorder(2));
+                descuento.setBorderBottom(new SolidBorder(2));
+             }
 
             Cell conceptoElem = new Cell();
             conceptoElem.setBorder(Border.NO_BORDER);
@@ -263,9 +272,12 @@ public class PDFGenerator {
 
             Cell importeElem = new Cell();
             importeElem.setBorder(Border.NO_BORDER);
-
-            Cell descuentoElem = new Cell();
-            descuentoElem.setBorder(Border.NO_BORDER);
+            
+            Cell descuentoElem = null;
+            if(!listaBonificacion.get(0).equals("00,00")){
+                descuentoElem = new Cell();
+                descuentoElem.setBorder(Border.NO_BORDER);
+            }
 
             for (int i = 0; i < listaConceptos.size(); i++) {
                 conceptoElem.add(new Paragraph(listaConceptos.get(i)));
@@ -274,7 +286,11 @@ public class PDFGenerator {
                 baseImponibleElem.add(new Paragraph(listaBaseImponible.get(i)));
                 IVAElem.add(new Paragraph(listaPorcentajeIVA.get(i) + "%"));
                 importeElem.add(new Paragraph(listaImporteIVA.get(i)));
-                descuentoElem.add(new Paragraph(listaBonificacion.get(i)));
+                if(descuentoElem != null){
+                    descuentoElem.add(new Paragraph(listaBonificacion.get(i)));
+                    
+                }
+                
             }
 
             tabla4Recibos.addCell(concepto);
@@ -283,7 +299,9 @@ public class PDFGenerator {
             tabla4Recibos.addCell(baseImponible);
             tabla4Recibos.addCell(IVA);
             tabla4Recibos.addCell(importe);
-            tabla4Recibos.addCell(descuento);
+            if(descuento != null){
+                tabla4Recibos.addCell(descuento);
+            }
             //elementos 
             tabla4Recibos.addCell(conceptoElem);
             tabla4Recibos.addCell(subConceptoElem);
@@ -291,7 +309,10 @@ public class PDFGenerator {
             tabla4Recibos.addCell(baseImponibleElem);
             tabla4Recibos.addCell(IVAElem);
             tabla4Recibos.addCell(importeElem);
-            tabla4Recibos.addCell(descuentoElem);
+            
+            if(descuentoElem != null){
+                tabla4Recibos.addCell(descuentoElem);
+            }
 
             Table tabla5Tot = new Table(3);
             tabla5Tot.setMarginTop(20);

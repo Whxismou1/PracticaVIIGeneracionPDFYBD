@@ -1,5 +1,5 @@
 package POJOS;
-// Generated 23 may. 2024 22:57:30 by Hibernate Tools 4.3.1
+// Generated 24 may. 2024 23:15:23 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Ordenanza  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private Integer idOrdenanza;
      private String concepto;
      private String subconcepto;
@@ -19,7 +19,7 @@ public class Ordenanza  implements java.io.Serializable {
      private String acumulable;
      private Integer precioFijo;
      private Integer m3incluidos;
-     private Integer preciom3;
+     private Double preciom3;
      private Double porcentaje;
      private Integer conceptoRelacionado;
      private Double iva;
@@ -30,12 +30,7 @@ public class Ordenanza  implements java.io.Serializable {
     public Ordenanza() {
     }
 
-	
-    public Ordenanza(int id) {
-        this.id = id;
-    }
-    public Ordenanza(int id, Integer idOrdenanza, String concepto, String subconcepto, String descripcion, String acumulable, Integer precioFijo, Integer m3incluidos, Integer preciom3, Double porcentaje, Integer conceptoRelacionado, Double iva, String pueblo, String tipoCalculo, Set relContribuyenteOrdenanzas) {
-       this.id = id;
+    public Ordenanza(Integer idOrdenanza, String concepto, String subconcepto, String descripcion, String acumulable, Integer precioFijo, Integer m3incluidos, Double preciom3, Double porcentaje, Integer conceptoRelacionado, Double iva, String pueblo, String tipoCalculo, Set relContribuyenteOrdenanzas) {
        this.idOrdenanza = idOrdenanza;
        this.concepto = concepto;
        this.subconcepto = subconcepto;
@@ -52,11 +47,11 @@ public class Ordenanza  implements java.io.Serializable {
        this.relContribuyenteOrdenanzas = relContribuyenteOrdenanzas;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Integer getIdOrdenanza() {
@@ -108,11 +103,11 @@ public class Ordenanza  implements java.io.Serializable {
     public void setM3incluidos(Integer m3incluidos) {
         this.m3incluidos = m3incluidos;
     }
-    public Integer getPreciom3() {
+    public Double getPreciom3() {
         return this.preciom3;
     }
     
-    public void setPreciom3(Integer preciom3) {
+    public void setPreciom3(Double preciom3) {
         this.preciom3 = preciom3;
     }
     public Double getPorcentaje() {
