@@ -195,7 +195,7 @@ public class GeneradorRecibosXML {
                     importeIVA.setText(listaInfoConceptos.get(5).toString());
                     bonificacionInfo.setText(listaInfoConceptos.get(6).toString());
                     importeBonificacion.setText(listaInfoConceptos.get(7).toString());
-                    
+//                    System.out.println("waaa: " + importeBonificacion.getValue());
                     if (contr.getExencion().toUpperCase().equals("S")) {
                         baseEachOne = 0;
                         IVAEachOne = 0;
@@ -251,6 +251,7 @@ public class GeneradorRecibosXML {
                     contribuyente.addContent(baseImponibleReciboContribuyente);
                     contribuyente.addContent(ivaReciboContribuyente);
                     contribuyente.addContent(totalReciboContribuyente);
+                    
                     listaContrValor.add(contribuyente);
                     pdf.createPDFContribuyente(contribuyente, listaInfoConceptos, numTrimestre, año);
                     contribuyentes.addContent(contribuyenteXML);

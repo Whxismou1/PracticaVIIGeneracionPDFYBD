@@ -5,15 +5,27 @@ import Controllers.DatabaseManager;
 import Controllers.ErrorManager;
 import Controllers.ExcelManager;
 import Controllers.GeneradorRecibosXML;
+import Controllers.HibernateUtil;
 import Controllers.IBANController;
 import Controllers.NIFController;
 import Entities.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
+import org.hibernate.engine.spi.SessionImplementor;
 import org.jdom2.Element;
 
 public class Coordinator {
@@ -91,14 +103,14 @@ public class Coordinator {
         excMang.writeExcel(listaContribuyente);
 
         List<Element> listElemContr = xmlGen.getListaContrValor();
-
         List<HashMap<String, String>> listaDeMapas = convertXML2Map(listElemContr, emailsList);
 //        
 //        for(String a: aa){
 //            System.out.println(a);
 //            
 //        }
-
+//        
+//        System.out.println("mainpkg.Coordinator.init()" + listaDeMapas.size());
 //        for (int i = 0; i < listaDeMapas.size(); i++) {
 //            HashMap<String, String> map = listaDeMapas.get(i);
 //            System.out.println("Mapa " + (i + 1) + ":");
@@ -108,7 +120,9 @@ public class Coordinator {
 //        }
 
 //        
-        dbm.init(listaContribuyenteFiltrado, listaOrdenanza, listaDeMapas, trimestre);
+//        dbm.init(listaContribuyenteFiltrado, listaOrdenanza, listaDeMapas, trimestre);
+//        exportDatabase("src/resources/bbddback.sql");
+
         System.exit(0);
     }
 
@@ -132,6 +146,7 @@ public class Coordinator {
             for (Element elemento : elementos) {
                 String nombreElemento = elemento.getName();
                 String valorElemento = elemento.getText();
+//                System.out.println(nombreElemento + ":" + valorElemento);
                 map.put(nombreElemento, valorElemento);
             }
             map.put("email", emailsList.get(i));
@@ -140,5 +155,35 @@ public class Coordinator {
 
         return listaDeMapas;
     }
+//
+//    private void exportDatabase(String outputFilePath) {
+//        try ( PrintWriter writer = new PrintWriter(new FileWriter(outputFilePath));  Session session = HibernateUtil.getSessionFactory().openSession()) {
+//
+//            // Export structure
+//            String createDbStatement = session.createNativeQuery("SHOW CREATE DATABASE sistemas2").uniqueResult().toString();
+//            writer.println(createDbStatement + ";");
+//            session.
+//            // Export data for each table
+//            List<String> tables = session.createNativeQuery("SHOW TABLES").getResultList();
+//            for (String tableName : tables) {
+//                writer.println();
+//                writer.println("-- Table structure for table '" + tableName + "'");
+//                String createTableStatement = session.createNativeQuery("SHOW CREATE TABLE " + tableName).uniqueResult().toString();
+//                writer.println(createTableStatement + ";");
+//
+//                writer.println();
+//                writer.println("-- Dumping data for table '" + tableName + "'");
+//                for (Object row : session.createNativeQuery("SELECT * FROM " + tableName).getResultList()) {
+//                    writer.println(row.toString());
+//                }
+//            }
+//
+//            System.out.println("Export successful!");
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.err.println("Error al exportar la base de datos: " + e.getMessage());
+//        }
+//    }
 
 }
