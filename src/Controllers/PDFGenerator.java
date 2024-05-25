@@ -52,10 +52,6 @@ public class PDFGenerator {
         }
 
         // Aquí tienes el HashMap con los elementos
-//        for (String clave : map.keySet()) {
-//            System.out.println(clave + ": " + map.get(clave));
-//        }
-
         String trimestreFrase = "";
         switch(trimestre){
             case 1:
@@ -73,11 +69,6 @@ public class PDFGenerator {
             default:
                 break;
         }
-
-
-
-
-
         createPDF(map, listaInfoConceptos, trimestreFrase);
     }
 
@@ -287,10 +278,8 @@ public class PDFGenerator {
                 IVAElem.add(new Paragraph(listaPorcentajeIVA.get(i) + "%"));
                 importeElem.add(new Paragraph(listaImporteIVA.get(i)));
                 if(descuentoElem != null){
-                    descuentoElem.add(new Paragraph(listaBonificacion.get(i)));
-                    
-                }
-                
+                    descuentoElem.add(new Paragraph(listaBonificacion.get(i)));                   
+                }           
             }
 
             tabla4Recibos.addCell(concepto);

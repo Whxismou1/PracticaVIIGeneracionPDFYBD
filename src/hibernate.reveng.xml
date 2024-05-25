@@ -42,9 +42,9 @@ Contributor(s):
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="sistemas2"/>
   <table-filter match-name="lecturas"/>
-  <table-filter match-name="recibos"/>
+  <table-filter match-name="ordenanza"/>
   <table-filter match-name="contribuyente"/>
   <table-filter match-name="lineasrecibo"/>
+  <table-filter match-name="recibos"/>
   <table-filter match-name="rel_contribuyente_ordenanza"/>
-  <table-filter match-name="ordenanza"/>
 </hibernate-reverse-engineering>
